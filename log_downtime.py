@@ -31,5 +31,4 @@ def log_downtime(treshold=180):
                 writer = csv.writer(file)
                 writer.writerow([start_time,end_time,duration])
 
-def main():
-    log_downtime()
+log_downtime()
