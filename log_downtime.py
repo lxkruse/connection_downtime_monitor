@@ -16,7 +16,7 @@ def connection_available(address="8.8.8.8",port=53,timeout=3):
 
 # Runs endlessly checking connection. On lost_connection writes start and end of
 # outages to file.
-def log_downtime(treshold=60):
+def log_downtime(treshold=1):
 
     while True:
         connection_lost=False
@@ -27,7 +27,7 @@ def log_downtime(treshold=60):
             duration=(end_time-start_time).total_seconds()
 
         if connection_lost and duration>treshold:
-            with open('outages.txt','w+') as file:
+            with open('outages.txt','a+',newline='') as file:
                 writer = csv.writer(file)
                 writer.writerow([start_time,end_time,duration])
 
